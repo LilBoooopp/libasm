@@ -19,8 +19,7 @@ ft_read:
 	call __errno_location wrt ..plt
 	pop  rdx
 	mov  dword [rax], edx
-	mov  eax, -1
-	ret
+	mov  rax, -1
 
 .done:
 	ret
