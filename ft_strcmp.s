@@ -6,3 +6,20 @@ section .text
 	; rsi = *s2
 
 ft_strcmp:
+.loop:
+	movzx eax, byte [rdi]
+	movzx ecx, byte [rsi]
+	cmp   eax, ecx
+	jne   .diff
+	test  eax, eax
+	je    .done
+	inc   rdi
+	inc   rsi
+	jmp   .loop
+
+.diff:
+	sub eax, ecx
+	ret
+
+.done:
+	ret
