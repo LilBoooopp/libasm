@@ -16,7 +16,7 @@ ft_write:
 
 	push rbx
 	mov  rbx, rax
-	call __errno_location
+	call __errno_location wrt ..plt
 	neg  rbx
 	mov  dword [rax], ebx
 	pop  rbx
@@ -26,3 +26,5 @@ ft_write:
 
 .ok:
 	ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits

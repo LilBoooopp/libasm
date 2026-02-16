@@ -1,6 +1,5 @@
 global ft_strdup
-
-text .section
+extern ft_strlen, malloc, ft_strcpy
 
 	; char *strdup(const char *s)
 	; rdi = *s
@@ -11,7 +10,7 @@ ft_strdup:
 	call ft_strlen
 
 	lea  rdi, [rax + 1]
-	call malloc
+	call malloc wrt ..plt
 	test rax, rax
 	jz   .null
 
@@ -22,3 +21,5 @@ ft_strdup:
 .null:
 	pop rbx
 	ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits

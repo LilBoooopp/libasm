@@ -21,3 +21,5 @@ ft_strcpy:
 
 .done:
 	ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits

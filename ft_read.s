@@ -16,7 +16,7 @@ ft_read:
 
 	neg  eax
 	push rax
-	call __errno_location
+	call __errno_location wrt ..plt
 	pop  rdx
 	mov  dword [rax], edx
 	mov  eax, -1
@@ -24,3 +24,5 @@ ft_read:
 
 .done:
 	ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits
