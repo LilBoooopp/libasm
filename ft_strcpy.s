@@ -6,7 +6,7 @@ section .text
 	; rsi = src
 
 ft_strcpy:
-	xor rax, rdi
+	mov rax, rdi
 
 .loop:
 	mov dl, byte [rsi]
