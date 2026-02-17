@@ -205,57 +205,57 @@ static void test_list_sort(void) {
   free_list(head);
 }
 
-// static void test_list_remove_if(void) {
-//   t_list *head;
-//   char buf[256];
-//
-//   printf("\n ft_list_remove_if \n");
-//
-//   head = NULL;
-//   ft_list_push_front(&head, strdup("cherry"));
-//   ft_list_push_front(&head, strdup("banana"));
-//   ft_list_push_front(&head, strdup("apple"));
-//   ft_list_push_front(&head, strdup("banana"));
-//   ft_list_push_front(&head, strdup("date"));
-//
-//   ft_list_remove_if(&head, "banana", &strcmp, &free);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("remove banana", strcmp(buf, "date,apple,cherry") == 0);
-//   free_list_full(head);
-//
-//   head = NULL;
-//   ft_list_push_front(&head, strdup("b"));
-//   ft_list_push_front(&head, strdup("a"));
-//   ft_list_push_front(&head, strdup("a"));
-//   ft_list_remove_if(&head, "a", &strcmp, &free);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("remove from head", strcmp(buf, "b") == 0);
-//   free_list_full(head);
-//
-//   head = NULL;
-//   ft_list_push_front(&head, strdup("only"));
-//   ft_list_remove_if(&head, "only", &strcmp, &free);
-//   check("remove only element", head == NULL);
-//
-//   head = NULL;
-//   ft_list_remove_if(&head, "x", &strcmp, &free);
-//   check("empty list no crash", head == NULL);
-//
-//   head = NULL;
-//   ft_list_push_front(&head, strdup("a"));
-//   ft_list_push_front(&head, strdup("b"));
-//   ft_list_remove_if(&head, "z", &strcmp, &free);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("remove nonexistent", strcmp(buf, "b,a") == 0);
-//   free_list_full(head);
-//
-//   head = NULL;
-//   ft_list_push_front(&head, strdup("x"));
-//   ft_list_push_front(&head, strdup("x"));
-//   ft_list_push_front(&head, strdup("x"));
-//   ft_list_remove_if(&head, "x", &strcmp, &free);
-//   check("remove all elements", head == NULL);
-// }
+static void test_list_remove_if(void) {
+  t_list *head;
+  char buf[256];
+
+  printf("\n ft_list_remove_if \n");
+
+  head = NULL;
+  ft_list_push_front(&head, strdup("cherry"));
+  ft_list_push_front(&head, strdup("banana"));
+  ft_list_push_front(&head, strdup("apple"));
+  ft_list_push_front(&head, strdup("banana"));
+  ft_list_push_front(&head, strdup("date"));
+
+  ft_list_remove_if(&head, "banana", &strcmp, &free);
+  list_to_str(head, buf, sizeof(buf));
+  check("remove banana", strcmp(buf, "date,apple,cherry") == 0);
+  free_list_full(head);
+
+  head = NULL;
+  ft_list_push_front(&head, strdup("b"));
+  ft_list_push_front(&head, strdup("a"));
+  ft_list_push_front(&head, strdup("a"));
+  ft_list_remove_if(&head, "a", &strcmp, &free);
+  list_to_str(head, buf, sizeof(buf));
+  check("remove from head", strcmp(buf, "b") == 0);
+  free_list_full(head);
+
+  head = NULL;
+  ft_list_push_front(&head, strdup("only"));
+  ft_list_remove_if(&head, "only", &strcmp, &free);
+  check("remove only element", head == NULL);
+
+  head = NULL;
+  ft_list_remove_if(&head, "x", &strcmp, &free);
+  check("empty list no crash", head == NULL);
+
+  head = NULL;
+  ft_list_push_front(&head, strdup("a"));
+  ft_list_push_front(&head, strdup("b"));
+  ft_list_remove_if(&head, "z", &strcmp, &free);
+  list_to_str(head, buf, sizeof(buf));
+  check("remove nonexistent", strcmp(buf, "b,a") == 0);
+  free_list_full(head);
+
+  head = NULL;
+  ft_list_push_front(&head, strdup("x"));
+  ft_list_push_front(&head, strdup("x"));
+  ft_list_push_front(&head, strdup("x"));
+  ft_list_remove_if(&head, "x", &strcmp, &free);
+  check("remove all elements", head == NULL);
+}
 
 int main(void) {
   printf("═══════════════════════════════\n");
@@ -266,7 +266,7 @@ int main(void) {
   test_list_push_front();
   test_list_size();
   test_list_sort();
-  // test_list_remove_if();
+  test_list_remove_if();
 
   printf("\n═══════════════════════════════\n");
   printf("  Results: %d / %d passed\n", g_pass, g_tests);
