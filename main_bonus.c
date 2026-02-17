@@ -159,51 +159,51 @@ static void test_list_size(void) {
   free_list(head);
 }
 
-// static void test_list_sort(void) {
-//   t_list *head;
-//   char buf[256];
-//
-//   printf("\n ft_list_sort \n");
-//
-//   char *strs[] = {"delta", "alpha", "echo", "bravo", "charlie"};
-//   head = build_list(strs, 5);
-//   ft_list_sort(&head, &strcmp);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("5 strings sorted", strcmp(buf, "alpha,bravo,charlie,delta,echo") ==
-//   0); free_list(head);
-//
-//   char *sorted[] = {"a", "b", "c"};
-//   head = build_list(sorted, 3);
-//   ft_list_sort(&head, &strcmp);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("already sorted", strcmp(buf, "a,b,c") == 0);
-//   free_list(head);
-//
-//   char *rev[] = {"c", "b", "a"};
-//   head = build_list(rev, 3);
-//   ft_list_sort(&head, &strcmp);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("reverse sorted", strcmp(buf, "a,b,c") == 0);
-//   free_list(head);
-//
-//   char *single[] = {"alone"};
-//   head = build_list(single, 1);
-//   ft_list_sort(&head, &strcmp);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("single element", strcmp(buf, "alone") == 0);
-//   free_list(head);
-//
-//   head = NULL;
-//   ft_list_sort(&head, &strcmp);
-//   check("empty list", head == NULL);
-//
-//   char *dups[] = {"bb", "aa", "bb", "aa", "cc"};
-//   head = build_list(dups, 5);
-//   ft_list_sort(&head, &strcmp);
-//   list_to_str(head, buf, sizeof(buf));
-//   check("with duplicates", strcmp(buf, "aa,aa,bb,bb,cc") == 0);
-//   free_list(head);
-// }
+static void test_list_sort(void) {
+  t_list *head;
+  char buf[256];
+
+  printf("\n ft_list_sort \n");
+
+  char *strs[] = {"delta", "alpha", "echo", "bravo", "charlie"};
+  head = build_list(strs, 5);
+  ft_list_sort(&head, &strcmp);
+  list_to_str(head, buf, sizeof(buf));
+  check("5 strings sorted", strcmp(buf, "alpha,bravo,charlie,delta,echo") == 0);
+  free_list(head);
+
+  char *sorted[] = {"a", "b", "c"};
+  head = build_list(sorted, 3);
+  ft_list_sort(&head, &strcmp);
+  list_to_str(head, buf, sizeof(buf));
+  check("already sorted", strcmp(buf, "a,b,c") == 0);
+  free_list(head);
+
+  char *rev[] = {"c", "b", "a"};
+  head = build_list(rev, 3);
+  ft_list_sort(&head, &strcmp);
+  list_to_str(head, buf, sizeof(buf));
+  check("reverse sorted", strcmp(buf, "a,b,c") == 0);
+  free_list(head);
+
+  char *single[] = {"alone"};
+  head = build_list(single, 1);
+  ft_list_sort(&head, &strcmp);
+  list_to_str(head, buf, sizeof(buf));
+  check("single element", strcmp(buf, "alone") == 0);
+  free_list(head);
+
+  head = NULL;
+  ft_list_sort(&head, &strcmp);
+  check("empty list", head == NULL);
+
+  char *dups[] = {"bb", "aa", "bb", "aa", "cc"};
+  head = build_list(dups, 5);
+  ft_list_sort(&head, &strcmp);
+  list_to_str(head, buf, sizeof(buf));
+  check("with duplicates", strcmp(buf, "aa,aa,bb,bb,cc") == 0);
+  free_list(head);
+}
 
 // static void test_list_remove_if(void) {
 //   t_list *head;
@@ -265,7 +265,7 @@ int main(void) {
   // test_atoi_base();
   test_list_push_front();
   test_list_size();
-  // test_list_sort();
+  test_list_sort();
   // test_list_remove_if();
 
   printf("\n═══════════════════════════════\n");

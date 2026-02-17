@@ -10,7 +10,7 @@ CC		:= cc
 SRC := ft_strlen.s ft_strcmp.s ft_strcpy.s ft_write.s ft_read.s ft_strdup.s
 OBJ := $(SRC:.s=.o)
 
-SRC_BONUS := ft_list_size_bonus.s ft_list_push_front_bonus.s
+SRC_BONUS := ft_list_size_bonus.s ft_list_push_front_bonus.s ft_list_sort_bonus.s
 OBJ_BONUS := $(SRC_BONUS:.s=.o)
 
 all: $(NAME)
