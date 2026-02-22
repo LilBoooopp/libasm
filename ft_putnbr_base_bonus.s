@@ -34,81 +34,81 @@
 ft_putnbr_base:
 	;     check NULL
 	test  rsi, rsi
-	jz    .zero
+	jz    .ret
 	movzx eax, byte [rsi]
 	test  al, al
-	jz    .zero
+	jz    .ret
 
 	;     check for more than 1 character
 	movzx eax, byte [rsi + 1]
 	test  al, al
-	jz    .zero
+	jz    .ret
+	xor   ecx, ecx
 
-	mov rax, 0; i = 0
-	;   while (base[i] != '\0')
-
-.loop:
-	movzx r8d, byte [rsi + rax]
+.validate:
+	movzx r8d, byte [rsi + rcx]
 	test  r8b, r8b
-	jz    .endloop
+	jz    .valid
 
 	;   base[i] == '-'
 	cmp r8b, '-'
-	je  .zero
+	je  .ret
 	;   base[i] == '+'
 	cmp r8b, '+'
-	je  .zero
+	je  .ret
 
-	lea rcx, [rax + 1]; j = i + 1
+	lea rdx, [rcx + 1]; j = i + 1
 
-.loop2:
+.duplicate_check:
 	;base[j] != '\0'
-	movzx    r9d, byte [rsi + rcx]
+	movzx    r9d, byte [rsi + rdx]
 	test     r9b, r9b
 	jz       .outerloop
 
 	;   base[i] == base[j]
 	cmp r8b, r9b
-	je  .zero
-	inc rcx
-	jmp .loop2
+	je  .ret
+	inc rdx
+	jmp .duplicate_check
 
 .outerloop:
-	inc rax
-	jmp .loop
+	inc rcx
+	jmp .validate
 
-.zero:
-	mov eax, 0
-	ret
-
-.endloop:
+.valid:
 	push rbx
 	push r12
-	mov  r12d, eax; save base length
-	mov  rbx, rsi; save base pointer
-	cmp  edi, 0
+	mov  rbx, rsi
+	mov  r12d, ecx
+	;    check negative
+	test edi, edi
 	jns  .pos
 
-	;    write '-'
+	push rdi; save number before write
 	push '-'
-	mov  rdi, 1
-	mov  rsi, rsp
-	mov  rdx, 1
-	mov  rax, 1
-	syscall
-	pop  rax
 
-	neg edi
+	;write (1, '-', 1)
+	mov    rdi, 1
+	mov    rsi, rsp
+	mov    rdx, 1
+	mov    rax, 1
+	syscall
+
+	pop rax; clean '-' off stack
+	pop rdi; restore number
+	neg edi; fworks for INT_MIN but div treats it as unsigned 2147483648
 
 .pos:
-	call print_nbr
+	call .print_nbr
 	pop  r12
 	pop  rbx
+
+.ret:
 	ret
 
 	; print_nbr(int nbr, char *base, int base_len)
 
-print_nbr:
+.print_nbr:
 	cmp  edi, r12d
 	jb   .print_digit
 	push rdi; save remainder for after recursion
@@ -116,7 +116,7 @@ print_nbr:
 	mov  eax, edi
 	div  r12d; eax = quotient, edx = remainder
 	mov  edi, eax; recurse with quotient
-	call print_nbr
+	call .print_nbr
 	pop  rdi; restore remainder
 
 .print_digit:
@@ -137,3 +137,5 @@ print_nbr:
 
 	pop rax
 	ret
+
+section .note.GNU-stack noalloc noexec nowrite progbits
