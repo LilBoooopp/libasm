@@ -8,7 +8,7 @@ typedef struct s_list {
   struct s_list *next;
 } t_list;
 
-// int ft_atoi_base(const char *str, const char *base);
+int ft_atoi_base(const char *str, const char *base);
 int ft_putnbr_base(int nbr, const char *base);
 void ft_list_push_front(t_list **begin_list, void *data);
 int ft_list_size(t_list *begin_list);
@@ -84,39 +84,38 @@ static void list_to_str(t_list *head, char *buf, size_t bufsize) {
   buf[pos] = '\0';
 }
 
-// static void test_atoi_base(void) {
-//   printf("\n ft_atoi_base \n");
-//
-//   check("42 in decimal", ft_atoi_base("42", "0123456789") == 42);
-//   check("0 in decimal", ft_atoi_base("0", "0123456789") == 0);
-//   check("-42 in decimal", ft_atoi_base("-42", "0123456789") == -42);
-//
-//   check("101 in binary = 5", ft_atoi_base("101", "01") == 5);
-//   check("-101 in binary = -5", ft_atoi_base("-101", "01") == -5);
-//   check("1111 in binary = 15", ft_atoi_base("1111", "01") == 15);
-//
-//   check("1A in hex = 26", ft_atoi_base("1A", "0123456789ABCDEF") == 26);
-//   check("FF in hex = 255", ft_atoi_base("FF", "0123456789ABCDEF") == 255);
-//   check("-FF in hex = -255", ft_atoi_base("-FF", "0123456789ABCDEF") ==
-//   -255);
-//
-//   check("po in poneyvif = 1", ft_atoi_base("po", "poneyvif") == 1);
-//
-//   check("leading spaces", ft_atoi_base("   42", "0123456789") == 42);
-//   check("leading tabs and spaces",
-//         ft_atoi_base(" \t\n 42", "0123456789") == 42);
-//
-//   check("--42 = 42 (double neg)", ft_atoi_base("--42", "0123456789") == 42);
-//   check("-+42 = -42", ft_atoi_base("-+42", "0123456789") == -42);
-//
-//   check("empty base returns 0", ft_atoi_base("42", "") == 0);
-//   check("single char base returns 0", ft_atoi_base("42", "0") == 0);
-//   check("duplicate in base returns 0", ft_atoi_base("42", "0123456788") ==
-//   0); check("+ in base returns 0", ft_atoi_base("42", "01+23") == 0);
-//   check("- in base returns 0", ft_atoi_base("42", "01-23") == 0);
-//
-//   check("stops at non-base char", ft_atoi_base("42xyz", "0123456789") == 42);
-// }
+static void test_atoi_base(void) {
+  printf("\n ft_atoi_base \n");
+
+  check("42 in decimal", ft_atoi_base("42", "0123456789") == 42);
+  check("0 in decimal", ft_atoi_base("0", "0123456789") == 0);
+  check("-42 in decimal", ft_atoi_base("-42", "0123456789") == -42);
+
+  check("101 in binary = 5", ft_atoi_base("101", "01") == 5);
+  check("-101 in binary = -5", ft_atoi_base("-101", "01") == -5);
+  check("1111 in binary = 15", ft_atoi_base("1111", "01") == 15);
+
+  check("1A in hex = 26", ft_atoi_base("1A", "0123456789ABCDEF") == 26);
+  check("FF in hex = 255", ft_atoi_base("FF", "0123456789ABCDEF") == 255);
+  check("-FF in hex = -255", ft_atoi_base("-FF", "0123456789ABCDEF") == -255);
+
+  check("po in poneyvif = 1", ft_atoi_base("po", "poneyvif") == 1);
+
+  check("leading spaces", ft_atoi_base("   42", "0123456789") == 42);
+  check("leading tabs and spaces",
+        ft_atoi_base(" \t\n 42", "0123456789") == 42);
+
+  check("--42 = 42 (double neg)", ft_atoi_base("--42", "0123456789") == 42);
+  check("-+42 = -42", ft_atoi_base("-+42", "0123456789") == -42);
+
+  check("empty base returns 0", ft_atoi_base("42", "") == 0);
+  check("single char base returns 0", ft_atoi_base("42", "0") == 0);
+  check("duplicate in base returns 0", ft_atoi_base("42", "0123456788") == 0);
+  check("+ in base returns 0", ft_atoi_base("42", "01+23") == 0);
+  check("- in base returns 0", ft_atoi_base("42", "01-23") == 0);
+
+  check("stops at non-base char", ft_atoi_base("42xyz", "0123456789") == 42);
+}
 
 /*
  * Captures ft_putnbr_base output by redirecting stdout to a pipe.
@@ -415,7 +414,7 @@ int main(void) {
   printf("═══════════════════════════════\n");
 
   test_putnbr_base();
-  // test_atoi_base();
+  test_atoi_base();
   test_list_push_front();
   test_list_size();
   test_list_sort();

@@ -44,7 +44,8 @@ typedef struct s_list
 ```
 
 ## Bonus Functions
- * `ft_atoi_base`: Convrts a string representing a number in a specific base system to an integer.
+ * `ft_atoi_base`: Converts a string representing a number in a specific base system to an integer.
+ * `ft_putnbr_base`: Prints an integer given, in a specific base system
  * `ft_list_push_front`: Adds a new `t_list` element to the beginning of the list.
  * `ft_list_size`: Returns the total number of elements currently in the list.
  * `ft_list_sort`: Sorts the list's elements in ascending order using a provided comparison function.
